@@ -1,0 +1,8 @@
+*.class
+*.o
+*.obj
+*.exe
+*.pyc
+__pycache__/
+build/
+*.pdf

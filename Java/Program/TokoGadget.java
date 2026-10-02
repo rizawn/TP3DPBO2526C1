@@ -69,14 +69,20 @@ public class TokoGadget {
         System.out.println(" KATALOG PRODUK [" + label + "] (Jumlah: " + daftarProduk.size() + " Produk)");
         System.out.println("================================================================================");
 
-        for (int i = 0; i < daftarProduk.size(); i++) {
-            System.out.println("[" + (i + 1) + "]");
-            // Pemanggilan dinamis murni polimorfisme tanpa pengecekan tipe if-else
-            daftarProduk.get(i).displayInfo();
-            if (i < daftarProduk.size() - 1) {
-                System.out.println("--------------------------------------------------------------------------------");
+        if (daftarProduk.isEmpty()) {
+            System.out.println(" [!] Katalog produk toko saat ini masih kosong (0 Produk).");
+            System.out.println("     Silakan gunakan menu [2] Tambah Produk atau [3] Muat Data Sampel.");
+        } else {
+            for (int i = 0; i < daftarProduk.size(); i++) {
+                System.out.println("[" + (i + 1) + "]");
+                // Pemanggilan dinamis murni polimorfisme tanpa pengecekan tipe if-else
+                daftarProduk.get(i).displayInfo();
+                if (i < daftarProduk.size() - 1) {
+                    System.out.println("--------------------------------------------------------------------------------");
+                }
             }
         }
+
         System.out.println("================================================================================");
         System.out.println();
     }

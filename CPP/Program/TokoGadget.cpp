@@ -1,4 +1,3 @@
-#pragma once
 #ifndef TOKO_GADGET_CPP
 #define TOKO_GADGET_CPP
 
@@ -78,14 +77,20 @@ public:
         cout << " KATALOG PRODUK [" << label << "] (Jumlah: " << daftarProduk.size() << " Produk)" << endl;
         cout << "================================================================================" << endl;
 
-        for (size_t i = 0; i < daftarProduk.size(); ++i) {
-            cout << "[" << (i + 1) << "]" << endl;
-            // Pemanggilan method virtual secara polimorfik tanpa if-else tipe
-            daftarProduk[i]->displayInfo();
-            if (i < daftarProduk.size() - 1) {
-                cout << "--------------------------------------------------------------------------------" << endl;
+        if (daftarProduk.empty()) {
+            cout << " [!] Katalog produk toko saat ini masih kosong (0 Produk)." << endl;
+            cout << "     Silakan gunakan menu [2] Tambah Produk atau [3] Muat Data Sampel." << endl;
+        } else {
+            for (size_t i = 0; i < daftarProduk.size(); ++i) {
+                cout << "[" << (i + 1) << "]" << endl;
+                // Pemanggilan method virtual secara polimorfik tanpa if-else tipe
+                daftarProduk[i]->displayInfo();
+                if (i < daftarProduk.size() - 1) {
+                    cout << "--------------------------------------------------------------------------------" << endl;
+                }
             }
         }
+
         cout << "================================================================================" << endl;
         cout << endl;
     }

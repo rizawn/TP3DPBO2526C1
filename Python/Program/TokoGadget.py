@@ -44,12 +44,16 @@ class TokoGadget:
         print(f" KATALOG PRODUK [{label}] (Jumlah: {len(self.__daftar_produk)} Produk)")
         print("=" * 80)
 
-        for i, produk in enumerate(self.__daftar_produk):
-            print(f"[{i + 1}]")
-            # Pemanggilan dinamis murni polimorfisme tanpa pengecekan tipe if-else
-            produk.display_info()
-            if i < len(self.__daftar_produk) - 1:
-                print("-" * 80)
+        if len(self.__daftar_produk) == 0:
+            print(" [!] Katalog produk toko saat ini masih kosong (0 Produk).")
+            print("     Silakan gunakan menu [2] Tambah Produk atau [3] Muat Data Sampel.")
+        else:
+            for i, produk in enumerate(self.__daftar_produk):
+                print(f"[{i + 1}]")
+                # Pemanggilan dinamis murni polimorfisme tanpa pengecekan tipe if-else
+                produk.display_info()
+                if i < len(self.__daftar_produk) - 1:
+                    print("-" * 80)
 
         print("=" * 80)
         print()

@@ -1,4 +1,3 @@
-#pragma once
 #ifndef PERIFERAL_CPP
 #define PERIFERAL_CPP
 

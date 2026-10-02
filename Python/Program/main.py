@@ -1,14 +1,43 @@
+import sys
 from TokoGadget import TokoGadget
 from SparepartPc import SparepartPc
 from SparepartLaptop import SparepartLaptop
 from Periferal import Periferal
 from GamingFurniture import GamingFurniture
 
-def main():
-    # 1. Inisialisasi objek TokoGadget
-    toko = TokoGadget("Gadget & Gaming Rig Hub", "Jl. Merdeka No. 45, Bandung")
+def baca_str(prompt):
+    return input(prompt).strip()
 
-    # 2. Memasukkan 8 data seed awal
+def baca_int(prompt):
+    while True:
+        try:
+            return int(input(prompt).strip())
+        except ValueError:
+            print("  [!] Input harus berupa angka bulat. Coba lagi.")
+
+def baca_float(prompt):
+    while True:
+        try:
+            return float(input(prompt).strip())
+        except ValueError:
+            print("  [!] Input harus berupa angka. Coba lagi.")
+
+def tampilkan_welcoming():
+    print("=" * 80)
+    print("  ####    ##   #####   ####  ###### #####    #    # #    # #####  ")
+    print(" #    #  #  #  #    # #    # #        #      #    # #    # #    # ")
+    print(" #      #    # #    # #      #####    #      ###### #    # #####  ")
+    print(" #  ### ###### #    # #  ### #        #      #    # #    # #    # ")
+    print(" #    # #    # #    # #    # #        #      #    # #    # #    # ")
+    print("  ####  #    # #####   ####  ######   #      #    #  ####  #####  ")
+    print("=" * 80)
+    print("            SELAMAT DATANG DI GADGET & GAMING RIG HUB!            ")
+    print("      Pusat Perakitan PC, Sparepart Laptop, Periferal & Furniture  ")
+    print("                      Jl. Merdeka No. 45, Bandung                       ")
+    print("=" * 80)
+    print()
+
+def muat_data_sampel(toko):
     toko.tambahProduk(SparepartPc("PC-001", "RTX 4070 Gaming OC", "NVIDIA", 8499000, 5, 200, "PCIe x16"))
     toko.tambahProduk(SparepartPc("PC-002", "Ryzen 7 5800X", "AMD", 3850000, 8, 105, "AM4"))
     toko.tambahProduk(SparepartLaptop("LP-001", "RAM SODIMM 16GB DDR4 3200", "Kingston", 899000, 15, "DDR4 SODIMM", 24))
@@ -17,20 +46,116 @@ def main():
     toko.tambahProduk(Periferal("PF-002", "Mouse G502 X Plus", "Logitech", 1299000, 20, "Wireless", "25.600 DPI"))
     toko.tambahProduk(GamingFurniture("GF-001", "Kursi Gaming Ergonomis", "ROG", 2500000, 4, "Mesh + Foam", 150))
     toko.tambahProduk(GamingFurniture("GF-002", "Meja Gaming Elektrik", "Secretlab", 4200000, 3, "Steel + MDF", 100))
+    print("[v] Berhasil memuat 8 data produk sampel ke dalam toko!\n")
 
-    # 3. Menampilkan katalog SEBELUM penambahan
-    toko.tampilkanKatalog("SEBELUM PENAMBAHAN")
+def menu_tambah_produk(toko):
+    print("=" * 80)
+    print("                    FORM PILIH KATEGORI PRODUK BARU                            ")
+    print("=" * 80)
+    print("  1. Sparepart PC Desktop     (GPU, CPU, PSU, RAM Desktop, dll)")
+    print("  2. Sparepart Laptop         (RAM SODIMM, Baterai, Layar LCD, dll)")
+    print("  3. Periferal Desktop        (Keyboard, Mouse, Headset, Webcam, dll)")
+    print("  4. Gaming Furniture         (Kursi Gaming, Meja Gaming, Monitor Stand)")
+    print("  5. Batal / Kembali ke Menu Utama")
+    print("-" * 80)
+    kategori = baca_int("Pilih kategori produk (1-5): ")
+    print()
 
-    # Notifikasi penambahan data
-    print(">> Menambahkan 3 produk baru ke inventaris toko...\n")
+    if kategori == 1:
+        print("-" * 80)
+        print("                 INPUT DATA: SPAREPART PC DESKTOP                              ")
+        print("-" * 80)
+        id_p = baca_str("  ID Produk          : ")
+        nama = baca_str("  Nama Produk        : ")
+        brand = baca_str("  Brand / Merk       : ")
+        harga = baca_float("  Harga Satuan (Rp)  : ")
+        stok = baca_int("  Jumlah Stok (unit) : ")
+        daya = baca_int("  Konsumsi Daya (W)  : ")
+        form_factor = baca_str("  Form Factor / Slot : ")
+        print("-" * 80)
+        toko.tambahProduk(SparepartPc(id_p, nama, brand, harga, stok, daya, form_factor))
+        print("[v] Sukses! Produk Sparepart PC Desktop berhasil ditambahkan ke inventaris toko.\n")
 
-    # 4. Menambahkan 3 data produk baru
-    toko.tambahProduk(SparepartPc("PC-003", "PSU RM850x 80+ Gold", "Corsair", 1750000, 6, 850, "ATX"))
-    toko.tambahProduk(Periferal("PF-003", "Headset Cloud Stinger 2", "HyperX", 599000, 18, "Wired", "Surround 7.1"))
-    toko.tambahProduk(GamingFurniture("GF-003", "Monitor Stand Riser", "Razer", 650000, 9, "Aluminium", 20))
+    elif kategori == 2:
+        print("-" * 80)
+        print("                 INPUT DATA: SPAREPART LAPTOP                                  ")
+        print("-" * 80)
+        id_p = baca_str("  ID Produk          : ")
+        nama = baca_str("  Nama Produk        : ")
+        brand = baca_str("  Brand / Merk       : ")
+        harga = baca_float("  Harga Satuan (Rp)  : ")
+        stok = baca_int("  Jumlah Stok (unit) : ")
+        kompatibel = baca_str("  Tipe Kompatibilitas: ")
+        garansi = baca_int("  Garansi Resmi (bln): ")
+        print("-" * 80)
+        toko.tambahProduk(SparepartLaptop(id_p, nama, brand, harga, stok, kompatibel, garansi))
+        print("[v] Sukses! Produk Sparepart Laptop berhasil ditambahkan ke inventaris toko.\n")
 
-    # 5. Menampilkan katalog SESUDAH penambahan
-    toko.tampilkanKatalog("SESUDAH PENAMBAHAN")
+    elif kategori == 3:
+        print("-" * 80)
+        print("                 INPUT DATA: PERIFERAL DESKTOP                                 ")
+        print("-" * 80)
+        id_p = baca_str("  ID Produk          : ")
+        nama = baca_str("  Nama Produk        : ")
+        brand = baca_str("  Brand / Merk       : ")
+        harga = baca_float("  Harga Satuan (Rp)  : ")
+        stok = baca_int("  Jumlah Stok (unit) : ")
+        koneksi = baca_str("  Konektivitas       : ")
+        fitur = baca_str("  Fitur Unggulan     : ")
+        print("-" * 80)
+        toko.tambahProduk(Periferal(id_p, nama, brand, harga, stok, koneksi, fitur))
+        print("[v] Sukses! Produk Periferal Desktop berhasil ditambahkan ke inventaris toko.\n")
+
+    elif kategori == 4:
+        print("-" * 80)
+        print("                 INPUT DATA: GAMING FURNITURE                                  ")
+        print("-" * 80)
+        id_p = baca_str("  ID Produk          : ")
+        nama = baca_str("  Nama Produk        : ")
+        brand = baca_str("  Brand / Merk       : ")
+        harga = baca_float("  Harga Satuan (Rp)  : ")
+        stok = baca_int("  Jumlah Stok (unit) : ")
+        material = baca_str("  Bahan / Material   : ")
+        beban = baca_float("  Beban Maksimal (kg): ")
+        print("-" * 80)
+        toko.tambahProduk(GamingFurniture(id_p, nama, brand, harga, stok, material, beban))
+        print("[v] Sukses! Produk Gaming Furniture berhasil ditambahkan ke inventaris toko.\n")
+
+    elif kategori == 5:
+        print(">> Kembali ke Menu Utama.\n")
+    else:
+        print("[!] Pilihan kategori tidak valid.\n")
+
+def main():
+    toko = TokoGadget("Gadget & Gaming Rig Hub", "Jl. Merdeka No. 45, Bandung")
+    tampilkan_welcoming()
+
+    pilihan = 0
+    while pilihan != 4:
+        print("=" * 80)
+        print("                                  MENU UTAMA                                    ")
+        print("=" * 80)
+        print("  1. Lihat Katalog Produk Toko")
+        print("  2. Tambah Produk Baru (Pilih Kategori)")
+        print("  3. Muat Data Sampel Awal (8 Produk Default)")
+        print("  4. Keluar dari Toko")
+        print("-" * 80)
+        pilihan = baca_int("Pilih aksi (1-4): ")
+        print()
+
+        if pilihan == 1:
+            label = "DATA KOSONG / SEBELUM INPUT" if toko.getJumlahProduk() == 0 else "LIVE STATUS"
+            toko.tampilkanKatalog(label)
+        elif pilihan == 2:
+            menu_tambah_produk(toko)
+        elif pilihan == 3:
+            muat_data_sampel(toko)
+        elif pilihan == 4:
+            print("=" * 80)
+            print(" Terima kasih telah berkunjung ke Toko Gadget & Gaming Rig Hub! Sampai jumpa!   ")
+            print("=" * 80)
+        else:
+            print("[!] Pilihan menu tidak valid. Silakan pilih 1 - 4.\n")
 
 if __name__ == "__main__":
     main()

@@ -197,25 +197,26 @@ classDiagram
 
 ---
 
-## Penjelasan Alur Program
+## Penjelasan Alur Program dan UX Interaktif
 
-1. **Instansiasi Toko:**  
-   Program menginisialisasi satu objek toko dengan nama `"Gadget & Gaming Rig Hub"` beralamat di `"Jl. Merdeka No. 45, Bandung"`.
-2. **Pengisian Data Awal (Seed Data):**  
-   Sebanyak 8 produk awal dibuat dan dimasukkan ke toko melalui `tambahProduk()`:
-   - 2 item `SparepartPc` (VGA RTX 4070 & CPU Ryzen 7 5800X)
-   - 2 item `SparepartLaptop` (RAM SODIMM 16GB & Baterai Laptop 6-Cell)
-   - 2 item `Periferal` (Keyboard Mechanical K68 & Mouse G502 X Plus)
-   - 2 item `GamingFurniture` (Kursi Gaming ROG & Meja Gaming Elektrik Secretlab)
-3. **Pencetakan Katalog Tahap 1:**  
-   Program mencetak katalog dengan header status **`[SEBELUM PENAMBAHAN]`** yang menampilkan ke-8 produk secara terurut beserta spesifikasi khususnya.
-4. **Penambahan Data Baru di Tengah Program:**  
-   Sebanyak 3 produk baru ditambahkan ke toko:
-   - 1 item `SparepartPc` (PSU RM850x 80+ Gold)
-   - 1 item `Periferal` (Headset Cloud Stinger 2)
-   - 1 item `GamingFurniture` (Monitor Stand Riser)
-5. **Pencetakan Katalog Tahap 2:**  
-   Program mencetak kembali katalog dengan header status **`[SESUDAH PENAMBAHAN]`** yang memuat total 11 produk secara lengkap.
+Program ini mengusung antarmuka terminal interaktif (*interactive CLI UX*) layaknya sistem kasir/manajemen toko retail sungguhan:
+
+1. **Welcoming Entrance:**  
+   Saat pertama kali dijalankan, program menampilkan banner selamat datang megah bertuliskan **GADGET & GAMING RIG HUB** beserta informasi alamat toko di Bandung.
+2. **Menu Utama Interaktif:**  
+   Pengguna disajikan 4 menu pilihan:
+   - `[1] Lihat Katalog Produk Toko`: Menampilkan katalog produk secara polimorfik. Jika inventaris masih kosong (belum ada input), sistem menampilkan pesan informatif bahwa data masih kosong (0 produk).
+   - `[2] Tambah Produk Baru (Pilih Kategori)`: Membuka sub-menu pemilihan kategori dengan form input yang disesuaikan (*customized layout*).
+   - `[3] Muat Data Sampel Awal (8 Produk Default)`: Memuat 8 data sampel secara instan untuk kemudahan pengujian/demo.
+   - `[4] Keluar dari Toko`: Menutup program dengan pesan terima kasih.
+3. **Pemisahan Form Input Berdasarkan Kategori:**  
+   Layout formulir dipisahkan secara dinamis sesuai kebutuhan atribut spesifik masing-masing kelas:
+   - **Sparepart PC Desktop:** Input atribut umum + Konsumsi Daya (W) & Form Factor/Slot.
+   - **Sparepart Laptop:** Input atribut umum + Kompatibilitas Soket/Tipe & Garansi Resmi (Bulan).
+   - **Periferal Desktop:** Input atribut umum + Tipe Konektivitas & Fitur Unggulan.
+   - **Gaming Furniture:** Input atribut umum + Bahan/Material & Beban Maksimal (Kg).
+4. **Verifikasi Output Sebelum dan Sesudah Input:**  
+   Pengguna dapat memeriksa katalog saat masih kosong (`[DATA KOSONG / SEBELUM INPUT]`), kemudian melakukan penambahan produk baru (baik manual maupun sampel), lalu melihat kembali daftar barang jualan yang telah terisi (`[LIVE STATUS]`) secara rapi dan polimorfik.
 
 ---
 

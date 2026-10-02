@@ -1,4 +1,3 @@
-#pragma once
 #ifndef PRODUK_CPP
 #define PRODUK_CPP
 

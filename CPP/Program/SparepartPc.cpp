@@ -1,4 +1,3 @@
-#pragma once
 #ifndef SPAREPART_PC_CPP
 #define SPAREPART_PC_CPP
 

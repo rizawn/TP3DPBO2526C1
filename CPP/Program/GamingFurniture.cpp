@@ -1,4 +1,3 @@
-#pragma once
 #ifndef GAMING_FURNITURE_CPP
 #define GAMING_FURNITURE_CPP
 

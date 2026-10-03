@@ -99,54 +99,7 @@ classDiagram
     Produk <|-- Periferal : Hierarchical Inheritance
     Produk <|-- GamingFurniture : Hierarchical Inheritance
     TokoGadget *-- Produk : Composition (1 to *)
-```
 
-### Representasi Teks (ASCII)
-
-```text
-                       +---------------------------------------+
-                       |           <<abstract>>                |
-                       |              Produk                   |
-                       +---------------------------------------+
-                       | # id       : String                   |
-                       | # nama     : String                   |
-                       | # brand    : String                   |
-                       | # harga    : double                   |
-                       | # stok     : int                      |
-                       +---------------------------------------+
-                       | + displayInfo()*                      |
-                       +---------------------------------------+
-                                          ^
-                                          | (Hierarchical Inheritance)
-          +-------------------+-----------+-----------+--------------------+
-          |                   |                       |                    |
-+-------------------+ +---------------------+ +------------------+ +-----------------------+
-|    SparepartPc    | |   SparepartLaptop   | |    Periferal     | |    GamingFurniture    |
-+-------------------+ +---------------------+ +------------------+ +-----------------------+
-| - dayaWatt: int   | | - tipeKompatibel:str| | - koneksi: str   | | - material: str       |
-| - formFactor: str | | - garansiBulan: int | | - tipeFitur: str | | - bebanMaksKg: double |
-+-------------------+ +---------------------+ +------------------+ +-----------------------+
-| + displayInfo()   | | + displayInfo()     | | + displayInfo()  | | + displayInfo()       |
-+-------------------+ +---------------------+ +------------------+ +-----------------------+
-          ^                   ^                       ^                    ^
-          |                   |                       |                    |
-          +-------------------+-----------+-----------+--------------------+
-                                          *
-                                          | (Composition: has-a)
-                       +---------------------------------------+
-                       |              TokoGadget               |
-                       +---------------------------------------+
-                       | - namaToko     : String               |
-                       | - alamat       : String               |
-                       | - daftarProduk : List<Produk*>        |
-                       +---------------------------------------+
-                       | + tambahProduk(Produk) : void         |
-                       | + tampilkanKatalog(String) : void     |
-                       | + getJumlahProduk() : int             |
-                       +---------------------------------------+
-```
-
----
 
 ## Tabel Atribut dan Methods
 

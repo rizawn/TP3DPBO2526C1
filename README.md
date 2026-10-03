@@ -46,8 +46,6 @@ Sistem diimplementasikan secara identik pada tiga bahasa pemrograman berorientas
 
 ## Diagram Class
 
-### Visualisasi Diagram (Mermaid)
-
 ```mermaid
 classDiagram
     class Produk {
@@ -99,7 +97,9 @@ classDiagram
     Produk <|-- Periferal : Hierarchical Inheritance
     Produk <|-- GamingFurniture : Hierarchical Inheritance
     TokoGadget *-- Produk : Composition (1 to *)
+```
 
+---
 
 ## Tabel Atribut dan Methods
 

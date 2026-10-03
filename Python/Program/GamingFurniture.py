@@ -21,12 +21,12 @@ class GamingFurniture(Produk):
     def get_beban_maks_kg(self):
         return self.__beban_maks_kg
 
-    # Override display_info (Polimorfisme)
+    # Override get_card_lines (Polimorfisme murni untuk kartu 2 kolom)
+    def get_card_lines(self, nomor_urut):
+        return self.format_card_lines(nomor_urut, "GamingFurniture", f"Bahan: {self.__material}", f"Beban Maks: {int(self.__beban_maks_kg)} kg")
+
+    # Override display_info (Polimorfisme murni)
     def display_info(self):
-        print(f"  ID Produk   : {self.get_id()}")
-        print(f"  Kategori    : GamingFurniture")
-        print(f"  Nama Produk : {self.get_nama()}")
-        print(f"  Brand       : {self.get_brand()}")
-        print(f"  Harga       : {self.format_rupiah(self.get_harga())}")
-        print(f"  Stok        : {self.get_stok()} unit")
-        print(f"  Spesifikasi : Material: {self.__material} | Beban Maks: {int(self.__beban_maks_kg)} kg")
+        for line in self.get_card_lines(1):
+            print(line)
+

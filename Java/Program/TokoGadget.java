@@ -60,25 +60,44 @@ public class TokoGadget {
         return sb.toString();
     }
 
-    // Menampilkan katalog produk secara polimorfik
+    // Menampilkan katalog produk secara polimorfik (2 kotak kesamping)
+    public void tampilkanKatalog() {
+        tampilkanKatalog("");
+    }
+
     public void tampilkanKatalog(String label) {
         System.out.println("================================================================================");
         System.out.println(centerText(namaToko, 80));
         System.out.println(centerText(alamat, 80));
         System.out.println("================================================================================");
-        System.out.println(" KATALOG PRODUK [" + label + "] (Jumlah: " + daftarProduk.size() + " Produk)");
-        System.out.println("================================================================================");
 
         if (daftarProduk.isEmpty()) {
-            System.out.println(" [!] Katalog produk toko saat ini masih kosong (0 Produk).");
-            System.out.println("     Silakan gunakan menu [2] Tambah Produk atau [3] Muat Data Sampel.");
+            System.out.println(centerText("KATALOG PRODUK (Katalog masih kosong!)", 80));
+            System.out.println("================================================================================");
+            System.out.println(" [!] Katalog masih kosong! (Belum ada produk).");
+            System.out.println("     Silakan gunakan menu [2] Tambah Produk atau [3] Muat Data Sampel Awal.");
         } else {
-            for (int i = 0; i < daftarProduk.size(); i++) {
-                System.out.println("[" + (i + 1) + "]");
-                // Pemanggilan dinamis murni polimorfisme tanpa pengecekan tipe if-else
-                daftarProduk.get(i).displayInfo();
-                if (i < daftarProduk.size() - 1) {
-                    System.out.println("--------------------------------------------------------------------------------");
+            String headerCount = "KATALOG PRODUK (" + daftarProduk.size() + " Produk)";
+            if (daftarProduk.size() == 1) {
+                headerCount = "KATALOG PRODUK (1 Produk)";
+            }
+            System.out.println(centerText(headerCount, 80));
+            System.out.println("================================================================================");
+
+            for (int i = 0; i < daftarProduk.size(); i += 2) {
+                java.util.List<String> card1 = daftarProduk.get(i).getCardLines(i + 1);
+                boolean hasSecond = (i + 1 < daftarProduk.size());
+                java.util.List<String> card2 = hasSecond ? daftarProduk.get(i + 1).getCardLines(i + 2) : null;
+
+                for (int lineIdx = 0; lineIdx < card1.size(); lineIdx++) {
+                    if (card2 != null) {
+                        System.out.println(card1.get(lineIdx) + "  " + card2.get(lineIdx));
+                    } else {
+                        System.out.println(card1.get(lineIdx));
+                    }
+                }
+                if (i + 2 < daftarProduk.size()) {
+                    System.out.println();
                 }
             }
         }

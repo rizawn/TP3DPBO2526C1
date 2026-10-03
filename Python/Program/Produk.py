@@ -45,6 +45,38 @@ class Produk:
     def get_stok(self):
         return self.__stok
 
-    # Method display_info yang akan dioverride oleh kelas-kelas turunan (Polimorfisme)
+    def _pad_trunc(self, text, target_len):
+        if len(text) > target_len:
+            if target_len > 3:
+                return text[:target_len - 3] + "..."
+            return text[:target_len]
+        return text.ljust(target_len)
+
+    def _format_card_row(self, text):
+        return f"| {self._pad_trunc(text, 35)} |"
+
+    def format_card_lines(self, nomor_urut, kategori, spek1, spek2):
+        sep = "+" + "-" * 37 + "+"
+        return [
+            sep,
+            self._format_card_row(f"[{nomor_urut}] {self.__nama}"),
+            sep,
+            self._format_card_row(f"ID Produk   : {self.__id}"),
+            self._format_card_row(f"Kategori    : {kategori}"),
+            self._format_card_row(f"Brand       : {self.__brand}"),
+            self._format_card_row(f"Harga       : {self.format_rupiah(self.__harga)}"),
+            self._format_card_row(f"Stok        : {self.__stok} unit"),
+            self._format_card_row(f"Spesifikasi : {spek1}"),
+            self._format_card_row(f"              {spek2}"),
+            sep
+        ]
+
+    # Method polimorfik murni untuk menghasilkan baris-baris kartu produk
+    def get_card_lines(self, nomor_urut):
+        raise NotImplementedError("Subclass wajib mengimplementasikan method get_card_lines()")
+
+    # Method display_info yang dioverride oleh kelas-kelas turunan (Polimorfisme)
     def display_info(self):
-        raise NotImplementedError("Subclass wajib mengimplementasikan method display_info()")
+        for line in self.get_card_lines(1):
+            print(line)
+

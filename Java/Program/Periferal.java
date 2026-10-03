@@ -34,15 +34,17 @@ public class Periferal extends Produk {
         return this.tipeFitur;
     }
 
+    // Override getCardLines (Polimorfisme murni untuk kartu 2 kolom)
+    @Override
+    public java.util.List<String> getCardLines(int nomorUrut) {
+        return formatCardLines(nomorUrut, "Periferal", "Koneksi: " + koneksi, "Fitur: " + tipeFitur);
+    }
+
     // Override displayInfo (Polimorfisme)
     @Override
     public void displayInfo() {
-        System.out.println("  ID Produk   : " + id);
-        System.out.println("  Kategori    : Periferal");
-        System.out.println("  Nama Produk : " + nama);
-        System.out.println("  Brand       : " + brand);
-        System.out.println("  Harga       : " + formatRupiah(harga));
-        System.out.println("  Stok        : " + stok + " unit");
-        System.out.println("  Spesifikasi : Koneksi: " + koneksi + " | Fitur: " + tipeFitur);
+        for (String line : getCardLines(1)) {
+            System.out.println(line);
+        }
     }
 }

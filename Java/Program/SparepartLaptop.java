@@ -34,15 +34,17 @@ public class SparepartLaptop extends Produk {
         return this.garansiBulan;
     }
 
+    // Override getCardLines (Polimorfisme murni untuk kartu 2 kolom)
+    @Override
+    public java.util.List<String> getCardLines(int nomorUrut) {
+        return formatCardLines(nomorUrut, "SparepartLaptop", "Modul: " + tipeKompatibel, "Garansi: " + garansiBulan + " bln");
+    }
+
     // Override displayInfo (Polimorfisme)
     @Override
     public void displayInfo() {
-        System.out.println("  ID Produk   : " + id);
-        System.out.println("  Kategori    : SparepartLaptop");
-        System.out.println("  Nama Produk : " + nama);
-        System.out.println("  Brand       : " + brand);
-        System.out.println("  Harga       : " + formatRupiah(harga));
-        System.out.println("  Stok        : " + stok + " unit");
-        System.out.println("  Spesifikasi : Kompatibilitas: " + tipeKompatibel + " | Garansi: " + garansiBulan + " bln");
+        for (String line : getCardLines(1)) {
+            System.out.println(line);
+        }
     }
 }

@@ -34,15 +34,17 @@ public class GamingFurniture extends Produk {
         return this.bebanMaksKg;
     }
 
+    // Override getCardLines (Polimorfisme murni untuk kartu 2 kolom)
+    @Override
+    public java.util.List<String> getCardLines(int nomorUrut) {
+        return formatCardLines(nomorUrut, "GamingFurniture", "Bahan: " + material, "Beban Maks: " + (int) bebanMaksKg + " kg");
+    }
+
     // Override displayInfo (Polimorfisme)
     @Override
     public void displayInfo() {
-        System.out.println("  ID Produk   : " + id);
-        System.out.println("  Kategori    : GamingFurniture");
-        System.out.println("  Nama Produk : " + nama);
-        System.out.println("  Brand       : " + brand);
-        System.out.println("  Harga       : " + formatRupiah(harga));
-        System.out.println("  Stok        : " + stok + " unit");
-        System.out.println("  Spesifikasi : Material: " + material + " | Beban Maks: " + (int) bebanMaksKg + " kg");
+        for (String line : getCardLines(1)) {
+            System.out.println(line);
+        }
     }
 }

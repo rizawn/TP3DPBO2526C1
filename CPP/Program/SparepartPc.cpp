@@ -47,15 +47,17 @@ public:
         return this->formFactor;
     }
 
-    // Override displayInfo (Polimorfisme)
+    // Override getCardLines (Polimorfisme murni untuk kartu 2 kolom)
+    vector<string> getCardLines(int nomorUrut) const override {
+        return formatCardLines(nomorUrut, "SparepartPc", "Daya: " + to_string(dayaWatt) + " W", "Form: " + formFactor);
+    }
+
+    // Override displayInfo (Polimorfisme murni)
     void displayInfo() const override {
-        cout << "  ID Produk   : " << id << endl;
-        cout << "  Kategori    : SparepartPc" << endl;
-        cout << "  Nama Produk : " << nama << endl;
-        cout << "  Brand       : " << brand << endl;
-        cout << "  Harga       : " << formatRupiah(harga) << endl;
-        cout << "  Stok        : " << stok << " unit" << endl;
-        cout << "  Spesifikasi : Daya: " << dayaWatt << " W | Form Factor: " << formFactor << endl;
+        vector<string> lines = getCardLines(1);
+        for (const string& line : lines) {
+            cout << line << endl;
+        }
     }
 };
 

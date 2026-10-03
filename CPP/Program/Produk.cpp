@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -31,6 +32,40 @@ protected:
             }
         }
         return "Rp " + hasil;
+    }
+
+    // Helper untuk memotong atau melengkapi string ke panjang tepat N karakter
+    string padTrunc(const string& text, size_t targetLen) const {
+        if (text.length() > targetLen) {
+            if (targetLen > 3) {
+                return text.substr(0, targetLen - 3) + "...";
+            }
+            return text.substr(0, targetLen);
+        }
+        return text + string(targetLen - text.length(), ' ');
+    }
+
+    // Helper membuat satu baris kartu dengan border vertikal
+    string formatCardRow(const string& text) const {
+        return "| " + padTrunc(text, 35) + " |";
+    }
+
+    // Helper pembentuk kumpulan baris kartu 39-karakter
+    vector<string> formatCardLines(int nomorUrut, const string& kategori, const string& spek1, const string& spek2) const {
+        string sep = "+" + string(37, '-') + "+";
+        vector<string> lines;
+        lines.push_back(sep);
+        lines.push_back(formatCardRow("[" + to_string(nomorUrut) + "] " + nama));
+        lines.push_back(sep);
+        lines.push_back(formatCardRow("ID Produk   : " + id));
+        lines.push_back(formatCardRow("Kategori    : " + kategori));
+        lines.push_back(formatCardRow("Brand       : " + brand));
+        lines.push_back(formatCardRow("Harga       : " + formatRupiah(harga)));
+        lines.push_back(formatCardRow("Stok        : " + to_string(stok) + " unit"));
+        lines.push_back(formatCardRow("Spesifikasi : " + spek1));
+        lines.push_back(formatCardRow("              " + spek2));
+        lines.push_back(sep);
+        return lines;
     }
 
 public:
@@ -96,7 +131,10 @@ public:
         return this->stok;
     }
 
-    // Method displayInfo yang akan dioverride oleh semua kelas turunan (Polimorfisme murni)
+    // Method polimorfik murni untuk menghasilkan baris-baris kartu produk
+    virtual vector<string> getCardLines(int nomorUrut) const = 0;
+
+    // Method displayInfo yang dioverride oleh semua kelas turunan (Polimorfisme murni)
     virtual void displayInfo() const = 0;
 };
 

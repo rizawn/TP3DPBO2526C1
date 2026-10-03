@@ -35,28 +35,41 @@ class TokoGadget:
     def get_jumlah_produk(self):
         return self.getJumlahProduk()
 
-    # Menampilkan katalog produk secara polimorfik
+    # Menampilkan katalog produk secara polimorfik (2 kotak kesamping)
     def tampilkanKatalog(self, label=""):
         print("=" * 80)
         print(f"{self.__nama_toko:^80}")
         print(f"{self.__alamat:^80}")
         print("=" * 80)
-        print(f" KATALOG PRODUK [{label}] (Jumlah: {len(self.__daftar_produk)} Produk)")
-        print("=" * 80)
 
         if len(self.__daftar_produk) == 0:
-            print(" [!] Katalog produk toko saat ini masih kosong (0 Produk).")
-            print("     Silakan gunakan menu [2] Tambah Produk atau [3] Muat Data Sampel.")
+            print(f"{'KATALOG PRODUK (Katalog masih kosong!)':^80}")
+            print("=" * 80)
+            print(" [!] Katalog masih kosong! (Belum ada produk).")
+            print("     Silakan gunakan menu [2] Tambah Produk atau [3] Muat Data Sampel Awal.")
         else:
-            for i, produk in enumerate(self.__daftar_produk):
-                print(f"[{i + 1}]")
-                # Pemanggilan dinamis murni polimorfisme tanpa pengecekan tipe if-else
-                produk.display_info()
-                if i < len(self.__daftar_produk) - 1:
-                    print("-" * 80)
+            header_count = f"KATALOG PRODUK ({len(self.__daftar_produk)} Produk)"
+            if len(self.__daftar_produk) == 1:
+                header_count = "KATALOG PRODUK (1 Produk)"
+            print(f"{header_count:^80}")
+            print("=" * 80)
+
+            for i in range(0, len(self.__daftar_produk), 2):
+                card1 = self.__daftar_produk[i].get_card_lines(i + 1)
+                has_second = (i + 1 < len(self.__daftar_produk))
+                card2 = self.__daftar_produk[i + 1].get_card_lines(i + 2) if has_second else None
+
+                for line_idx in range(len(card1)):
+                    if card2:
+                        print(f"{card1[line_idx]}  {card2[line_idx]}")
+                    else:
+                        print(card1[line_idx])
+                if i + 2 < len(self.__daftar_produk):
+                    print()
 
         print("=" * 80)
         print()
 
     def tampilkan_katalog(self, label=""):
         self.tampilkanKatalog(label)
+

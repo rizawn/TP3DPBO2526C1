@@ -1,5 +1,7 @@
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 // Kelas abstrak induk (Superclass) yang merepresentasikan produk secara umum
@@ -38,6 +40,48 @@ public abstract class Produk {
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         kursIndonesia.setMaximumFractionDigits(0);
         return kursIndonesia.format(nilai);
+    }
+
+    // Helper untuk memotong atau melengkapi string ke panjang tepat N karakter
+    protected String padTrunc(String text, int targetLen) {
+        if (text.length() > targetLen) {
+            if (targetLen > 3) {
+                return text.substring(0, targetLen - 3) + "...";
+            }
+            return text.substring(0, targetLen);
+        }
+        StringBuilder sb = new StringBuilder(text);
+        while (sb.length() < targetLen) {
+            sb.append(" ");
+        }
+        return sb.toString();
+    }
+
+    // Helper membuat satu baris kartu dengan border vertikal
+    protected String formatCardRow(String text) {
+        return "| " + padTrunc(text, 35) + " |";
+    }
+
+    // Helper pembentuk kumpulan baris kartu 39-karakter
+    protected List<String> formatCardLines(int nomorUrut, String kategori, String spek1, String spek2) {
+        StringBuilder sepSb = new StringBuilder("+");
+        for (int i = 0; i < 37; i++) sepSb.append("-");
+        sepSb.append("+");
+        String sep = sepSb.toString();
+
+        List<String> lines = new ArrayList<>();
+        lines.add(sep);
+        lines.add(formatCardRow("[" + nomorUrut + "] " + nama));
+        lines.add(sep);
+        lines.add(formatCardRow("ID Produk   : " + id));
+        lines.add(formatCardRow("Kategori    : " + kategori));
+        lines.add(formatCardRow("Brand       : " + brand));
+        lines.add(formatCardRow("Harga       : " + formatRupiah(harga)));
+        lines.add(formatCardRow("Stok        : " + stok + " unit"));
+        lines.add(formatCardRow("Spesifikasi : " + spek1));
+        lines.add(formatCardRow("              " + spek2));
+        lines.add(sep);
+        return lines;
     }
 
     // Getter dan Setter
@@ -80,6 +124,9 @@ public abstract class Produk {
     public int getStok() {
         return this.stok;
     }
+
+    // Method polimorfik murni untuk menghasilkan baris-baris kartu produk
+    public abstract List<String> getCardLines(int nomorUrut);
 
     // Method displayInfo yang wajib dioverride oleh semua subclass (Polimorfisme)
     public abstract void displayInfo();

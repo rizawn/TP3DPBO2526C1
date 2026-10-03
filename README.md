@@ -1,4 +1,4 @@
-# TP3 DPBO 2026 – Inventori Toko "Gadget & Gaming Rig Hub"
+# TP3 DPBO 2026 – Inventori Toko "IZA STORE"
 
 ## Janji
 
@@ -8,7 +8,7 @@ Saya **Riza Wahyu Nugraha** dengan **NIM 2511421** mengerjakan **Tugas Praktikum
 
 ## Deskripsi Program
 
-Program ini adalah sistem inventori katalog untuk toko **"Gadget & Gaming Rig Hub"** yang berlokasi di **Jl. Merdeka No. 45, Bandung**. Toko ini mengelola berbagai perlengkapan komputer dan ekosistem gaming yang terbagi ke dalam empat kategori utama:
+Program ini adalah sistem inventori katalog untuk toko **"IZA STORE"** yang berlokasi di **Jl. itu  No. itulah, kota itu**. Toko ini mengelola berbagai perlengkapan komputer dan ekosistem gaming yang terbagi ke dalam empat kategori utama:
 1. **Sparepart PC Desktop** (Komponen seperti GPU, Processor, PSU).
 2. **Sparepart Laptop** (Komponen khusus notebook seperti RAM SODIMM, Baterai).
 3. **Periferal Desktop** (Peralatan input/output seperti Keyboard Mechanical, Mouse Gaming, Headset).
@@ -202,21 +202,21 @@ classDiagram
 Program ini mengusung antarmuka terminal interaktif (*interactive CLI UX*) layaknya sistem kasir/manajemen toko retail sungguhan:
 
 1. **Welcoming Entrance:**  
-   Saat pertama kali dijalankan, program menampilkan banner selamat datang megah bertuliskan **GADGET & GAMING RIG HUB** beserta informasi alamat toko di Bandung.
+   Saat pertama kali dijalankan, program menampilkan banner selamat datang megah bertuliskan ASCII Art **IZA STORE** beserta informasi alamat toko di Bandung.
 2. **Menu Utama Interaktif:**  
    Pengguna disajikan 4 menu pilihan:
-   - `[1] Lihat Katalog Produk Toko`: Menampilkan katalog produk secara polimorfik. Jika inventaris masih kosong (belum ada input), sistem menampilkan pesan informatif bahwa data masih kosong (0 produk).
+   - `[1] Lihat Katalog Produk Toko`: Menampilkan katalog produk secara polimorfik dengan format **2 kartu berjejer ke samping (*2-column side-by-side card grid*)** yang estetik dan hemat ruang (pas pada standar 80 kolom terminal). Jika inventaris masih kosong, sistem menginformasikan status bahwa katalog masih kosong (0 produk). Jika sudah terisi, sistem menampilkan counter jumlah produk secara dinamis (contoh: `KATALOG PRODUK (1 Produk)` atau `KATALOG PRODUK (8 Produk)`).
    - `[2] Tambah Produk Baru (Pilih Kategori)`: Membuka sub-menu pemilihan kategori dengan form input yang disesuaikan (*customized layout*).
    - `[3] Muat Data Sampel Awal (8 Produk Default)`: Memuat 8 data sampel secara instan untuk kemudahan pengujian/demo.
-   - `[4] Keluar dari Toko`: Menutup program dengan pesan terima kasih.
+   - `[4] Keluar dari Toko`: Menutup program dengan pesan terima kasih ramah dari IZA STORE.
 3. **Pemisahan Form Input Berdasarkan Kategori:**  
    Layout formulir dipisahkan secara dinamis sesuai kebutuhan atribut spesifik masing-masing kelas:
    - **Sparepart PC Desktop:** Input atribut umum + Konsumsi Daya (W) & Form Factor/Slot.
    - **Sparepart Laptop:** Input atribut umum + Kompatibilitas Soket/Tipe & Garansi Resmi (Bulan).
    - **Periferal Desktop:** Input atribut umum + Tipe Konektivitas & Fitur Unggulan.
    - **Gaming Furniture:** Input atribut umum + Bahan/Material & Beban Maksimal (Kg).
-4. **Verifikasi Output Sebelum dan Sesudah Input:**  
-   Pengguna dapat memeriksa katalog saat masih kosong (`[DATA KOSONG / SEBELUM INPUT]`), kemudian melakukan penambahan produk baru (baik manual maupun sampel), lalu melihat kembali daftar barang jualan yang telah terisi (`[LIVE STATUS]`) secara rapi dan polimorfik.
+4. **Tampilan Kartu Polimorfik 2 Kolom:**  
+   Katalog produk ditampilkan berjejer 2 kotak ke samping menggunakan pemanggilan method polimorfik murni, menampilkan ID, Kategori, Nama Produk, Brand, Harga (format Rupiah), Stok, serta dua baris spesifikasi unik tiap subclass secara rapi dan presisi.
 
 ---
 
@@ -247,22 +247,114 @@ java Main
 
 ---
 
-## Dokumentasi Output Program
+## Dokumentasi
 
-### 1. C++
-* **Sebelum Penambahan:**  
-  ![C++ Sebelum Penambahan](CPP/Dokumentasi/cpp_sebelum.png)
-* **Setelah Penambahan:**  
-  ![C++ Setelah Penambahan](CPP/Dokumentasi/cpp_setelah.png)
+Screenshot dibuat dari program yang dijalankan pada terminal Windows (PowerShell). Pada setiap bahasa pemrograman (C++, Python, dan Java), tangkapan layar terminal mendokumentasikan lima tahapan interaksi menu toko secara komprehensif:
+1. **Lihat Katalog (Saat Masih Kosong):** Menampilkan banner welcoming megah ASCII art IZA STORE dan status bahwa katalog toko masih kosong (0 produk).
+2. **Tambah Produk Baru:** Formulir input data dinamis berdasarkan kategori yang dipilih beserta konfirmasi sukses penyimpanan objek produk.
+3. **Muat Data Sampel Awal:** Pengisian 8 produk sampel default secara otomatis ke dalam inventaris toko.
+4. **Lihat Katalog (Setelah Berisi Item):** Tampilan visual kartu katalog produk secara polimorfik murni dengan format **grid 2 kolom berjejer ke samping (*2-column side-by-side card grid*)**.
+5. **Keluar dari Toko:** Menutup program dengan pesan perpisahan ramah dari IZA STORE.
 
-### 2. Python
-* **Sebelum Penambahan:**  
-  ![Python Sebelum Penambahan](Python/Dokumentasi/python_sebelum.png)
-* **Setelah Penambahan:**  
-  ![Python Setelah Penambahan](Python/Dokumentasi/python_setelah.png)
+---
 
-### 3. Java
-* **Sebelum Penambahan:**  
-  ![Java Sebelum Penambahan](Java/Dokumentasi/java_sebelum.png)
-* **Setelah Penambahan:**  
-  ![Java Setelah Penambahan](Java/Dokumentasi/java_setelah.png)
+### C++
+
+#### 1. Lihat Katalog (Saat Masih Kosong)
+
+![C++ Katalog Kosong](Dokumentasi/cpp_01_katalog_kosong.png)
+
+[Buka screenshot C++ katalog kosong](Dokumentasi/cpp_01_katalog_kosong.png).
+
+#### 2. Tambah Produk Baru
+
+![C++ Tambah Produk Baru](Dokumentasi/cpp_02_tambah_produk.png)
+
+[Buka screenshot C++ tambah produk baru](Dokumentasi/cpp_02_tambah_produk.png).
+
+#### 3. Muat Data Sampel Awal
+
+![C++ Muat Data Sampel](Dokumentasi/cpp_03_muat_data.png)
+
+[Buka screenshot C++ muat data sampel](Dokumentasi/cpp_03_muat_data.png).
+
+#### 4. Lihat Katalog (Setelah Berisi Item - Grid 2 Kolom)
+
+![C++ Katalog Berisi Item](Dokumentasi/cpp_04_katalog_berisi.png)
+
+[Buka screenshot C++ katalog berisi item](Dokumentasi/cpp_04_katalog_berisi.png).
+
+#### 5. Keluar dari Toko
+
+![C++ Keluar Toko](Dokumentasi/cpp_05_keluar.png)
+
+[Buka screenshot C++ keluar dari toko](Dokumentasi/cpp_05_keluar.png).
+
+---
+
+### Python
+
+#### 1. Lihat Katalog (Saat Masih Kosong)
+
+![Python Katalog Kosong](Dokumentasi/python_01_katalog_kosong.png)
+
+[Buka screenshot Python katalog kosong](Dokumentasi/python_01_katalog_kosong.png).
+
+#### 2. Tambah Produk Baru
+
+![Python Tambah Produk Baru](Dokumentasi/python_02_tambah_produk.png)
+
+[Buka screenshot Python tambah produk baru](Dokumentasi/python_02_tambah_produk.png).
+
+#### 3. Muat Data Sampel Awal
+
+![Python Muat Data Sampel](Dokumentasi/python_03_muat_data.png)
+
+[Buka screenshot Python muat data sampel](Dokumentasi/python_03_muat_data.png).
+
+#### 4. Lihat Katalog (Setelah Berisi Item - Grid 2 Kolom)
+
+![Python Katalog Berisi Item](Dokumentasi/python_04_katalog_berisi.png)
+
+[Buka screenshot Python katalog berisi item](Dokumentasi/python_04_katalog_berisi.png).
+
+#### 5. Keluar dari Toko
+
+![Python Keluar Toko](Dokumentasi/python_05_keluar.png)
+
+[Buka screenshot Python keluar dari toko](Dokumentasi/python_05_keluar.png).
+
+---
+
+### Java
+
+#### 1. Lihat Katalog (Saat Masih Kosong)
+
+![Java Katalog Kosong](Dokumentasi/java_01_katalog_kosong.png)
+
+[Buka screenshot Java katalog kosong](Dokumentasi/java_01_katalog_kosong.png).
+
+#### 2. Tambah Produk Baru
+
+![Java Tambah Produk Baru](Dokumentasi/java_02_tambah_produk.png)
+
+[Buka screenshot Java tambah produk baru](Dokumentasi/java_02_tambah_produk.png).
+
+#### 3. Muat Data Sampel Awal
+
+![Java Muat Data Sampel](Dokumentasi/java_03_muat_data.png)
+
+[Buka screenshot Java muat data sampel](Dokumentasi/java_03_muat_data.png).
+
+#### 4. Lihat Katalog (Setelah Berisi Item - Grid 2 Kolom)
+
+![Java Katalog Berisi Item](Dokumentasi/java_04_katalog_berisi.png)
+
+[Buka screenshot Java katalog berisi item](Dokumentasi/java_04_katalog_berisi.png).
+
+#### 5. Keluar dari Toko
+
+![Java Keluar Toko](Dokumentasi/java_05_keluar.png)
+
+[Buka screenshot Java keluar dari toko](Dokumentasi/java_05_keluar.png).
+

@@ -1,5 +1,8 @@
 #include <iostream>
 #include <string>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 #include "TokoGadget.cpp"
 #include "SparepartPc.cpp"
 #include "SparepartLaptop.cpp"
@@ -42,18 +45,21 @@ double bacaDouble(const string& prompt) {
 
 // Menampilkan banner welcoming toko
 void tampilkanWelcoming() {
-    cout << "================================================================================" << endl;
-    cout << "  ####    ##   #####   ####  ###### #####    #    # #    # #####  " << endl;
-    cout << " #    #  #  #  #    # #    # #        #      #    # #    # #    # " << endl;
-    cout << " #      #    # #    # #      #####    #      ###### #    # #####  " << endl;
-    cout << " #  ### ###### #    # #  ### #        #      #    # #    # #    # " << endl;
-    cout << " #    # #    # #    # #    # #        #      #    # #    # #    # " << endl;
-    cout << "  ####  #    # #####   ####  ######   #      #    #  ####  #####  " << endl;
-    cout << "================================================================================" << endl;
-    cout << "            SELAMAT DATANG DI GADGET & GAMING RIG HUB!            " << endl;
-    cout << "      Pusat Perakitan PC, Sparepart Laptop, Periferal & Furniture  " << endl;
-    cout << "                      Jl. Merdeka No. 45, Bandung                       " << endl;
-    cout << "================================================================================" << endl;
+    cout << "=========================================================================================================" << endl;
+    cout << "  ▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄        ▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄▄  " << endl;
+    cout << "  ████  █▒▒▒▒▒▒▒▒▒▒█ ████████████      █▒▒▒▒▒▒▒▒▒▒█ ████████████ █▒▒▒▒▒▒▒▒▒▒█ ████████████ █▒▒▒▒▒▒▒▒▒▒█  " << endl;
+    cout << "  █▓▓█  ▀▀▀▀▀▀▀▀█░░█ █▓▓█▀▀▀▀▄▓▓█      █░░█▀▀▀▀▀▀▀▀ ▀▀▀▀▄▓▓█▀▀▀▀ █░░█▀▀▀▀▄░░█ █▓▓█▀▀▀▀▄▓▓█ █░░█▀▀▀▀▀▀▀▀  " << endl;
+    cout << "  █▒▒█   ▄▄▄▄▄▄▄█  █ █▒▒█▄▄▄▄█▒▒█      █  █▄▄▄▄▄▄▄      █▒▒█     █  █    █  █ █▒▒█▄▄▄▄█▒▒█ █  █▄▄▄▄▄▄▄▄  " << endl;
+    cout << "  █░░█  █░░░░░░░░░░█ █░░░░░░░░░░█      █░░░░░░░░░░█     █░░█     █░░█    █░░█ █░░░░░░░░░░█ █░░░░░░░░░░█  " << endl;
+    cout << "  █  █  █▒▒▄▀▀▀▀▀▀▀  █  █▀▀▀▀▄  █       ▀▀▀▀▀▀▀▄▒▒█     █  █     █▒▒█    █▒▒█ █  █▀▀▀█▄ ▀▄ █▒▒█▀▀▀▀▀▀▀▀  " << endl;
+    cout << "  █░░█  █▓▓█▄▄▄▄▄▄▄▄ █░░█    █░░█      ▄▄▄▄▄▄▄▄█▓▓█     █░░█     █▓▓█▄▄▄▄█▓▓█ █░░█    █░░█ █▓▓█▄▄▄▄▄▄▄▄  " << endl;
+    cout << "  █▒▒█  ████████████ █▒▒█    █▒▒█      ████████████     █▒▒█     ████████████ █▒▒█    █▒▒█ ████████████  " << endl;
+    cout << "  ▀▀▀▀   ▀▀▀▀▀▀▀▀▀▀▀ ▀▀▀▀    ▀▀▀▀      ▀▀▀▀▀▀▀▀▀▀▀      ▀▀▀▀      ▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀    ▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀▀  " << endl;
+    cout << "=========================================================================================================" << endl;
+    cout << "                                       SELAMAT DATANG DI IZA STORE!                                      " << endl;
+    cout << "                  Pusat Komputer, Laptop, Periferal & Gaming Furniture Terlengkap                        " << endl;
+    cout << "                                   Jl. itu  No. itulah, kota itu                                         " << endl;
+    cout << "=========================================================================================================" << endl;
     cout << endl;
 }
 
@@ -157,8 +163,13 @@ void menuTambahProduk(TokoGadget& toko) {
 }
 
 int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+#endif
+
     // 1. Inisialisasi toko
-    TokoGadget toko("Gadget & Gaming Rig Hub", "Jl. Merdeka No. 45, Bandung");
+    TokoGadget toko("IZA STORE", "Jl. itu  No. itulah, kota itu");
 
     // 2. Welcoming entrance
     tampilkanWelcoming();
@@ -177,11 +188,9 @@ int main() {
         cout << endl;
 
         switch (pilihan) {
-            case 1: {
-                string label = (toko.getJumlahProduk() == 0) ? "DATA KOSONG / SEBELUM INPUT" : "LIVE STATUS";
-                toko.tampilkanKatalog(label);
+            case 1:
+                toko.tampilkanKatalog();
                 break;
-            }
             case 2:
                 menuTambahProduk(toko);
                 break;
@@ -190,7 +199,7 @@ int main() {
                 break;
             case 4:
                 cout << "================================================================================" << endl;
-                cout << " Terima kasih telah berkunjung ke Toko Gadget & Gaming Rig Hub! Sampai jumpa!   " << endl;
+                cout << "         Terima kasih telah berkunjung ke IZA STORE! Sampai jumpa!              " << endl;
                 cout << "================================================================================" << endl;
                 break;
             default:

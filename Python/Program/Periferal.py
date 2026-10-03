@@ -21,12 +21,12 @@ class Periferal(Produk):
     def get_tipe_fitur(self):
         return self.__tipe_fitur
 
-    # Override display_info (Polimorfisme)
+    # Override get_card_lines (Polimorfisme murni untuk kartu 2 kolom)
+    def get_card_lines(self, nomor_urut):
+        return self.format_card_lines(nomor_urut, "Periferal", f"Koneksi: {self.__koneksi}", f"Fitur: {self.__tipe_fitur}")
+
+    # Override display_info (Polimorfisme murni)
     def display_info(self):
-        print(f"  ID Produk   : {self.get_id()}")
-        print(f"  Kategori    : Periferal")
-        print(f"  Nama Produk : {self.get_nama()}")
-        print(f"  Brand       : {self.get_brand()}")
-        print(f"  Harga       : {self.format_rupiah(self.get_harga())}")
-        print(f"  Stok        : {self.get_stok()} unit")
-        print(f"  Spesifikasi : Koneksi: {self.__koneksi} | Fitur: {self.__tipe_fitur}")
+        for line in self.get_card_lines(1):
+            print(line)
+

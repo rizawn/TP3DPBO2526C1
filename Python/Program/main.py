@@ -1,4 +1,7 @@
 import sys
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
 from TokoGadget import TokoGadget
 from SparepartPc import SparepartPc
 from SparepartLaptop import SparepartLaptop
@@ -23,18 +26,21 @@ def baca_float(prompt):
             print("  [!] Input harus berupa angka. Coba lagi.")
 
 def tampilkan_welcoming():
-    print("=" * 80)
-    print("  ####    ##   #####   ####  ###### #####    #    # #    # #####  ")
-    print(" #    #  #  #  #    # #    # #        #      #    # #    # #    # ")
-    print(" #      #    # #    # #      #####    #      ###### #    # #####  ")
-    print(" #  ### ###### #    # #  ### #        #      #    # #    # #    # ")
-    print(" #    # #    # #    # #    # #        #      #    # #    # #    # ")
-    print("  ####  #    # #####   ####  ######   #      #    #  ####  #####  ")
-    print("=" * 80)
-    print("            SELAMAT DATANG DI GADGET & GAMING RIG HUB!            ")
-    print("      Pusat Perakitan PC, Sparepart Laptop, Periferal & Furniture  ")
-    print("                      Jl. Merdeka No. 45, Bandung                       ")
-    print("=" * 80)
+    print("=" * 105)
+    print("  ▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄        ▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄▄  ")
+    print("  ████  █▒▒▒▒▒▒▒▒▒▒█ ████████████      █▒▒▒▒▒▒▒▒▒▒█ ████████████ █▒▒▒▒▒▒▒▒▒▒█ ████████████ █▒▒▒▒▒▒▒▒▒▒█  ")
+    print("  █▓▓█  ▀▀▀▀▀▀▀▀█░░█ █▓▓█▀▀▀▀▄▓▓█      █░░█▀▀▀▀▀▀▀▀ ▀▀▀▀▄▓▓█▀▀▀▀ █░░█▀▀▀▀▄░░█ █▓▓█▀▀▀▀▄▓▓█ █░░█▀▀▀▀▀▀▀▀  ")
+    print("  █▒▒█   ▄▄▄▄▄▄▄█  █ █▒▒█▄▄▄▄█▒▒█      █  █▄▄▄▄▄▄▄      █▒▒█     █  █    █  █ █▒▒█▄▄▄▄█▒▒█ █  █▄▄▄▄▄▄▄▄  ")
+    print("  █░░█  █░░░░░░░░░░█ █░░░░░░░░░░█      █░░░░░░░░░░█     █░░█     █░░█    █░░█ █░░░░░░░░░░█ █░░░░░░░░░░█  ")
+    print("  █  █  █▒▒▄▀▀▀▀▀▀▀  █  █▀▀▀▀▄  █       ▀▀▀▀▀▀▀▄▒▒█     █  █     █▒▒█    █▒▒█ █  █▀▀▀█▄ ▀▄ █▒▒█▀▀▀▀▀▀▀▀  ")
+    print("  █░░█  █▓▓█▄▄▄▄▄▄▄▄ █░░█    █░░█      ▄▄▄▄▄▄▄▄█▓▓█     █░░█     █▓▓█▄▄▄▄█▓▓█ █░░█    █░░█ █▓▓█▄▄▄▄▄▄▄▄  ")
+    print("  █▒▒█  ████████████ █▒▒█    █▒▒█      ████████████     █▒▒█     ████████████ █▒▒█    █▒▒█ ████████████  ")
+    print("  ▀▀▀▀   ▀▀▀▀▀▀▀▀▀▀▀ ▀▀▀▀    ▀▀▀▀      ▀▀▀▀▀▀▀▀▀▀▀      ▀▀▀▀      ▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀    ▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀▀  ")
+    print("=" * 105)
+    print("                                       SELAMAT DATANG DI IZA STORE!                                      ")
+    print("                  Pusat Komputer, Laptop, Periferal & Gaming Furniture Terlengkap                        ")
+    print("                                   Jl. itu  No. itulah, kota itu                                         ")
+    print("=" * 105)
     print()
 
 def muat_data_sampel(toko):
@@ -127,7 +133,7 @@ def menu_tambah_produk(toko):
         print("[!] Pilihan kategori tidak valid.\n")
 
 def main():
-    toko = TokoGadget("Gadget & Gaming Rig Hub", "Jl. Merdeka No. 45, Bandung")
+    toko = TokoGadget("IZA STORE", "Jl. itu  No. itulah, kota itu")
     tampilkan_welcoming()
 
     pilihan = 0
@@ -144,15 +150,14 @@ def main():
         print()
 
         if pilihan == 1:
-            label = "DATA KOSONG / SEBELUM INPUT" if toko.getJumlahProduk() == 0 else "LIVE STATUS"
-            toko.tampilkanKatalog(label)
+            toko.tampilkanKatalog()
         elif pilihan == 2:
             menu_tambah_produk(toko)
         elif pilihan == 3:
             muat_data_sampel(toko)
         elif pilihan == 4:
             print("=" * 80)
-            print(" Terima kasih telah berkunjung ke Toko Gadget & Gaming Rig Hub! Sampai jumpa!   ")
+            print("       Terima kasih telah berkunjung ke Toko IZA STORE! Sampai jumpa!           ")
             print("=" * 80)
         else:
             print("[!] Pilihan menu tidak valid. Silakan pilih 1 - 4.\n")

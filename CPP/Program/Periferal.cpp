@@ -47,15 +47,17 @@ public:
         return this->tipeFitur;
     }
 
-    // Override displayInfo (Polimorfisme)
+    // Override getCardLines (Polimorfisme murni untuk kartu 2 kolom)
+    vector<string> getCardLines(int nomorUrut) const override {
+        return formatCardLines(nomorUrut, "Periferal", "Koneksi: " + koneksi, "Fitur: " + tipeFitur);
+    }
+
+    // Override displayInfo (Polimorfisme murni)
     void displayInfo() const override {
-        cout << "  ID Produk   : " << id << endl;
-        cout << "  Kategori    : Periferal" << endl;
-        cout << "  Nama Produk : " << nama << endl;
-        cout << "  Brand       : " << brand << endl;
-        cout << "  Harga       : " << formatRupiah(harga) << endl;
-        cout << "  Stok        : " << stok << " unit" << endl;
-        cout << "  Spesifikasi : Koneksi: " << koneksi << " | Fitur: " << tipeFitur << endl;
+        vector<string> lines = getCardLines(1);
+        for (const string& line : lines) {
+            cout << line << endl;
+        }
     }
 };
 

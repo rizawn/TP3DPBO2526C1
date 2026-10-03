@@ -34,15 +34,17 @@ public class SparepartPc extends Produk {
         return this.formFactor;
     }
 
+    // Override getCardLines (Polimorfisme murni untuk kartu 2 kolom)
+    @Override
+    public java.util.List<String> getCardLines(int nomorUrut) {
+        return formatCardLines(nomorUrut, "SparepartPc", "Daya: " + dayaWatt + " W", "Form: " + formFactor);
+    }
+
     // Override displayInfo (Polimorfisme)
     @Override
     public void displayInfo() {
-        System.out.println("  ID Produk   : " + id);
-        System.out.println("  Kategori    : SparepartPc");
-        System.out.println("  Nama Produk : " + nama);
-        System.out.println("  Brand       : " + brand);
-        System.out.println("  Harga       : " + formatRupiah(harga));
-        System.out.println("  Stok        : " + stok + " unit");
-        System.out.println("  Spesifikasi : Daya: " + dayaWatt + " W | Form Factor: " + formFactor);
+        for (String line : getCardLines(1)) {
+            System.out.println(line);
+        }
     }
 }

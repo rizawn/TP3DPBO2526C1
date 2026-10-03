@@ -21,12 +21,12 @@ class SparepartPc(Produk):
     def get_form_factor(self):
         return self.__form_factor
 
-    # Override display_info (Polimorfisme)
+    # Override get_card_lines (Polimorfisme murni untuk kartu 2 kolom)
+    def get_card_lines(self, nomor_urut):
+        return self.format_card_lines(nomor_urut, "SparepartPc", f"Daya: {self.__daya_watt} W", f"Form: {self.__form_factor}")
+
+    # Override display_info (Polimorfisme murni)
     def display_info(self):
-        print(f"  ID Produk   : {self.get_id()}")
-        print(f"  Kategori    : SparepartPc")
-        print(f"  Nama Produk : {self.get_nama()}")
-        print(f"  Brand       : {self.get_brand()}")
-        print(f"  Harga       : {self.format_rupiah(self.get_harga())}")
-        print(f"  Stok        : {self.get_stok()} unit")
-        print(f"  Spesifikasi : Daya: {self.__daya_watt} W | Form Factor: {self.__form_factor}")
+        for line in self.get_card_lines(1):
+            print(line)
+

@@ -33,21 +33,35 @@ public class Main {
         }
     }
 
+    // Helper mencetak baris dengan raw UTF-8 bytes agar tidak terjadi encoding issue di console Windows
+    private static void printUtf8(String line) {
+        try {
+            byte[] bytes = (line + System.lineSeparator()).getBytes(java.nio.charset.StandardCharsets.UTF_8);
+            System.out.write(bytes);
+            System.out.flush();
+        } catch (Exception e) {
+            System.out.println(line);
+        }
+    }
+
     // Menampilkan banner welcoming toko
     private static void tampilkanWelcoming() {
-        System.out.println("================================================================================");
-        System.out.println("  ####    ##   #####   ####  ###### #####    #    # #    # #####  ");
-        System.out.println(" #    #  #  #  #    # #    # #        #      #    # #    # #    # ");
-        System.out.println(" #      #    # #    # #      #####    #      ###### #    # #####  ");
-        System.out.println(" #  ### ###### #    # #  ### #        #      #    # #    # #    # ");
-        System.out.println(" #    # #    # #    # #    # #        #      #    # #    # #    # ");
-        System.out.println("  ####  #    # #####   ####  ######   #      #    #  ####  #####  ");
-        System.out.println("================================================================================");
-        System.out.println("            SELAMAT DATANG DI GADGET & GAMING RIG HUB!            ");
-        System.out.println("      Pusat Perakitan PC, Sparepart Laptop, Periferal & Furniture  ");
-        System.out.println("                      Jl. Merdeka No. 45, Bandung                       ");
-        System.out.println("================================================================================");
-        System.out.println();
+        printUtf8("=========================================================================================================");
+        printUtf8("  ▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄        ▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄▄  ");
+        printUtf8("  ████  █▒▒▒▒▒▒▒▒▒▒█ ████████████      █▒▒▒▒▒▒▒▒▒▒█ ████████████ █▒▒▒▒▒▒▒▒▒▒█ ████████████ █▒▒▒▒▒▒▒▒▒▒█  ");
+        printUtf8("  █▓▓█  ▀▀▀▀▀▀▀▀█░░█ █▓▓█▀▀▀▀▄▓▓█      █░░█▀▀▀▀▀▀▀▀ ▀▀▀▀▄▓▓█▀▀▀▀ █░░█▀▀▀▀▄░░█ █▓▓█▀▀▀▀▄▓▓█ █░░█▀▀▀▀▀▀▀▀  ");
+        printUtf8("  █▒▒█   ▄▄▄▄▄▄▄█  █ █▒▒█▄▄▄▄█▒▒█      █  █▄▄▄▄▄▄▄      █▒▒█     █  █    █  █ █▒▒█▄▄▄▄█▒▒█ █  █▄▄▄▄▄▄▄▄  ");
+        printUtf8("  █░░█  █░░░░░░░░░░█ █░░░░░░░░░░█      █░░░░░░░░░░█     █░░█     █░░█    █░░█ █░░░░░░░░░░█ █░░░░░░░░░░█  ");
+        printUtf8("  █  █  █▒▒▄▀▀▀▀▀▀▀  █  █▀▀▀▀▄  █       ▀▀▀▀▀▀▀▄▒▒█     █  █     █▒▒█    █▒▒█ █  █▀▀▀█▄ ▀▄ █▒▒█▀▀▀▀▀▀▀▀  ");
+        printUtf8("  █░░█  █▓▓█▄▄▄▄▄▄▄▄ █░░█    █░░█      ▄▄▄▄▄▄▄▄█▓▓█     █░░█     █▓▓█▄▄▄▄█▓▓█ █░░█    █░░█ █▓▓█▄▄▄▄▄▄▄▄  ");
+        printUtf8("  █▒▒█  ████████████ █▒▒█    █▒▒█      ████████████     █▒▒█     ████████████ █▒▒█    █▒▒█ ████████████  ");
+        printUtf8("  ▀▀▀▀   ▀▀▀▀▀▀▀▀▀▀▀ ▀▀▀▀    ▀▀▀▀      ▀▀▀▀▀▀▀▀▀▀▀      ▀▀▀▀      ▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀    ▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀▀  ");
+        printUtf8("=========================================================================================================");
+        printUtf8("                                       SELAMAT DATANG DI IZA STORE!                                      ");
+        printUtf8("                  Pusat Komputer, Laptop, Periferal & Gaming Furniture Terlengkap                        ");
+        printUtf8("                                   Jl. itu  No. itulah, kota itu                                         ");
+        printUtf8("=========================================================================================================");
+        printUtf8("");
     }
 
     // Mengisi data sampel toko secara instan
@@ -150,7 +164,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        TokoGadget toko = new TokoGadget("Gadget & Gaming Rig Hub", "Jl. Merdeka No. 45, Bandung");
+        TokoGadget toko = new TokoGadget("IZA STORE", "Jl. itu  No. itulah, kota itu");
 
         tampilkanWelcoming();
 
@@ -169,8 +183,7 @@ public class Main {
 
             switch (pilihan) {
                 case 1:
-                    String label = (toko.getJumlahProduk() == 0) ? "DATA KOSONG / SEBELUM INPUT" : "LIVE STATUS";
-                    toko.tampilkanKatalog(label);
+                    toko.tampilkanKatalog();
                     break;
                 case 2:
                     menuTambahProduk(toko, sc);
@@ -180,7 +193,7 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("================================================================================");
-                    System.out.println(" Terima kasih telah berkunjung ke Toko Gadget & Gaming Rig Hub! Sampai jumpa!   ");
+                    System.out.println("       Terima kasih telah berkunjung ke Toko IZA STORE! Sampai jumpa!           ");
                     System.out.println("================================================================================");
                     break;
                 default:

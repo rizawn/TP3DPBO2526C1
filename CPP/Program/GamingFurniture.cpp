@@ -47,15 +47,17 @@ public:
         return this->bebanMaksKg;
     }
 
-    // Override displayInfo (Polimorfisme)
+    // Override getCardLines (Polimorfisme murni untuk kartu 2 kolom)
+    vector<string> getCardLines(int nomorUrut) const override {
+        return formatCardLines(nomorUrut, "GamingFurniture", "Bahan: " + material, "Beban Maks: " + to_string(static_cast<long long>(bebanMaksKg)) + " kg");
+    }
+
+    // Override displayInfo (Polimorfisme murni)
     void displayInfo() const override {
-        cout << "  ID Produk   : " << id << endl;
-        cout << "  Kategori    : GamingFurniture" << endl;
-        cout << "  Nama Produk : " << nama << endl;
-        cout << "  Brand       : " << brand << endl;
-        cout << "  Harga       : " << formatRupiah(harga) << endl;
-        cout << "  Stok        : " << stok << " unit" << endl;
-        cout << "  Spesifikasi : Material: " << material << " | Beban Maks: " << static_cast<long long>(bebanMaksKg) << " kg" << endl;
+        vector<string> lines = getCardLines(1);
+        for (const string& line : lines) {
+            cout << line << endl;
+        }
     }
 };
 
